@@ -46,6 +46,18 @@ namespace PierresBakery.Tests
     }
 
     [TestMethod]
+    public void RemoveLoaf_RemovesThisBreadFromLoaves_List()
+    {
+      Bread breadOne = new Bread("challah");
+      Bread breadTwo = new Bread("challah");
+      List<Bread> testList = new List<Bread> {breadOne};
+
+      breadTwo.RemoveLoaf();
+
+      CollectionAssert.AreEqual(testList, Bread.Loaves);
+    }
+    
+    [TestMethod]
     public void ClearAll_ClearsLoaves_List()
     {
       Bread breadOne = new Bread("challah");

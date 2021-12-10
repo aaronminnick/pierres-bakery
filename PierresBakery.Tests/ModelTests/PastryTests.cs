@@ -46,6 +46,18 @@ namespace PierresBakery.Tests
     }
 
     [TestMethod]
+    public void RemovePastry_RemovesThisPastryFromPastries_List()
+    {
+      Pastry pastryOne = new Pastry("eclair");
+      Pastry pastryTwo = new Pastry("eclair");
+      List<Pastry> testList = new List<Pastry> {pastryOne};
+
+      pastryTwo.RemovePastry();
+
+      CollectionAssert.AreEqual(testList, Pastry.Pastries);
+    }
+
+    [TestMethod]
     public void ClearAll_ClearsPastries_List()
     {
       Pastry pastryOne = new Pastry("eclair");
