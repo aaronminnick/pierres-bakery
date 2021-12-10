@@ -31,6 +31,7 @@ public class Program
       Console.WriteLine(
         "Total Cost: ${0}\n" +
         "Type O to see a detailed order.\n" +
+        "Type R to remove an item from order.\n" +
         "Type C to check out and start over.\n",
         TotalOrder());
     }
@@ -74,6 +75,11 @@ public class Program
       if (inputChar == 'o' || inputChar == 'O')
       {
         DisplayOrder();
+        waitInput = false;
+      }
+      else if (inputChar == 'r' || inputChar == 'R')
+      {
+        HandleRemove();
         waitInput = false;
       }
       else if (inputChar == 'c' || inputChar == 'C')
@@ -157,9 +163,98 @@ public class Program
     }
     else
     {
-      Console.WriteLine("====================================================\n\n" +
-      "No items have been ordered yet.\n"
+      Console.WriteLine(
+        "====================================================\n\n" +
+        "No items have been ordered yet.\n"
+        );
+    }
+  }
+
+  private static void HandleRemove()
+  {
+    Console.WriteLine(
+      "====================================================\n\n" +
+      "Please type a number to remove that item.\n" +
+      "Press M to return to Menu without removing any item.\n"
       );
+    bool waitInput = true;
+    char inputChar;
+    while (waitInput)
+    {
+      inputChar = Console.ReadKey(true).KeyChar;
+      if (inputChar == 'm' || inputChar == 'M')
+      {
+        waitInput = false;
+      }
+      else if ('1' <= inputChar && inputChar <= '4')
+      {
+        string breadName = "";
+        switch (inputChar)
+        {
+          case '1':
+            breadName = "Challah";
+            break;
+          case '2':
+            breadName = "Rye";
+            break;
+          case '3':
+            breadName = "Baguette";
+            break;
+          case '4':
+            breadName = "Olive Loaf";
+            break;
+        }
+        Bread foundBread = Bread.Loaves.Find(loaf => loaf.Name == breadName);
+        if (foundBread != null)
+        {
+          foundBread.RemoveLoaf();
+          Console.WriteLine(
+            "====================================================\n\n" +
+            "Removing one {0} from order.\n",
+            breadName);
+        }
+        else
+        {
+          Console.WriteLine(
+            "====================================================\n\n" +
+            "There is no {0} in the order to remove.\n",
+            breadName);
+        }
+        waitInput = false; 
+      }
+      else if ('5' <= inputChar && inputChar <= '7')
+      {
+        string pastryName = "";
+        switch (inputChar)
+        {
+          case '5':
+            pastryName = "Eclair";
+            break;
+          case '6':
+            pastryName = "Pan a Chocolat";
+            break;
+          case '7':
+            pastryName = "Apple Turnover";
+            break;
+        }
+        Pastry foundPastry = Pastry.Pastries.Find(pastry => pastry.Name == pastryName);
+        if (foundPastry != null)
+        {
+          foundPastry.RemovePastry();
+          Console.WriteLine(
+            "====================================================\n\n" +
+            "Removing one {0} from order.\n",
+            pastryName);
+        }
+        else
+        {
+          Console.WriteLine(
+            "====================================================\n\n" +
+            "There is no {0} in the order to remove.\n",
+            pastryName);
+        }
+        waitInput = false; 
+      }
     }
   }
 
@@ -180,9 +275,10 @@ public class Program
     }
     else
     {
-      Console.WriteLine("====================================================\n\n" +
-      "No items have been ordered yet.\n"
-      );
+      Console.WriteLine(
+        "====================================================\n\n" +
+        "No items have been ordered yet.\n"
+        );
     }
   }
 }
