@@ -22,9 +22,11 @@ public class Program
     {
       Console.WriteLine(
         "(Type O to see a detailed order.)\n" +
-        "Total Cost: {0}", total
+        "Total Cost: ${0}", total
       );
     }
+    HandleInput();
+    Main();
   }
 
   private static int TotalOrder()
@@ -46,16 +48,60 @@ public class Program
     }
     return total;
   }
-}
 
-// bool waitInput = true;
-// char inputChar;
-// while (waitInput)
-// {
-//   inputChar = Console.ReadKey(true).KeyChar;
-//   if (inputChar == 'M' || inputChar == 'O')
-//   {
-//     Console.WriteLine("yay");
-//     waitInput = false;
-//   }
-// }
+  private static void HandleInput()
+  {
+    bool waitInput = true;
+    char inputChar;
+    while (waitInput)
+    {
+      inputChar = Console.ReadKey(true).KeyChar;
+      if (inputChar == 'o' || inputChar == 'O')
+      {
+        // Display detailed order
+        waitInput = false;
+      }
+      else if ('1' <= inputChar && inputChar <= '4')
+      {
+        string breadName = "";
+        switch (inputChar)
+        {
+          case '1':
+            breadName = "Challah";
+            break;
+          case '2':
+            breadName = "Rye";
+            break;
+          case '3':
+            breadName = "Baguette";
+            break;
+          case '4':
+            breadName = "Olive Loaf";
+            break;
+        }
+        Bread newBread = new Bread(breadName);
+        Console.WriteLine("\nAdding one {0} to order for ${1}\n", breadName, newBread.Price);
+        waitInput = false;
+      }
+      else if ('5' <= inputChar && inputChar <= '7')
+      {
+        string pastryName = "";
+        switch (inputChar)
+        {
+          case '5':
+            pastryName = "Eclair";
+            break;
+          case '6':
+            pastryName = "Pan a Chocolat";
+            break;
+          case '7':
+            pastryName = "Apple Turnover";
+            break;
+        }
+        Pastry newPastry = new Pastry(pastryName);
+        Console.WriteLine("\nAdding one {0} to order for ${1}\n", pastryName, newPastry.Price);
+        waitInput = false;
+      }
+    }
+  }
+}
