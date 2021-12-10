@@ -14,6 +14,7 @@ public class Program
         );
       firstWrite = false;
     }
+
     Console.WriteLine(
       "====================================================\n\n" +
       "Today's Menu:\n\n" +
@@ -25,16 +26,22 @@ public class Program
       "Please type a number to add the item to your order.\n"
       );
     
-    int total = TotalOrder();
-    if (total > 0)
+    if (OrderNotEmpty())
     {
       Console.WriteLine(
-        "(Type O to see a detailed order.)\n" +
-        "Total Cost: ${0}", total
-      );
+        "Type O to see a detailed order.\n" +
+        "Type C to check out and start over.\n" +
+        "Total Cost: ${0}", 
+        TotalOrder());
     }
+
     HandleInput();
     Main();
+  }
+
+  private static bool OrderNotEmpty()
+  {
+    return Bread.Loaves.Count > 0 || Pastry.Pastries.Count > 0;
   }
 
   private static int TotalOrder()
@@ -67,6 +74,11 @@ public class Program
       if (inputChar == 'o' || inputChar == 'O')
       {
         DisplayOrder();
+        waitInput = false;
+      }
+      else if (inputChar == 'c' || inputChar == 'C')
+      {
+        ClearOrder();
         waitInput = false;
       }
       else if ('1' <= inputChar && inputChar <= '4')
@@ -121,7 +133,7 @@ public class Program
   }
   private static void DisplayOrder()
   {
-    if (Bread.Loaves.Count > 0 || Pastry.Pastries.Count > 0)
+    if (OrderNotEmpty())
     {
       Console.WriteLine(
         "====================================================\n" +
@@ -147,5 +159,19 @@ public class Program
     {
       Console.WriteLine("\nNo items have been ordered yet.\n");
     }
+  }
+
+  private static void ClearOrder()
+  {
+    Console.WriteLine(
+      "====================================================\n\n" +
+      "Your total is ${0}.\n" +
+      "Thank you! Please come again!\n" +
+      "(Type Control-C at any time to exit program.)\n\n" + 
+      "====================================================\n\n\n\n",
+      TotalOrder());
+    Bread.ClearAll();
+    Pastry.ClearAll();
+    firstWrite = true;
   }
 }
