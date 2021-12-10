@@ -1,3 +1,4 @@
+using PierresBakery.Models;
 using System;
 
 public class Program
@@ -29,9 +30,20 @@ public class Program
   private static int TotalOrder()
   {
     int total = 0;
-
-    //check loaves and pastries
-
+    if (Bread.Loaves.Count > 0)
+    {
+      foreach (Bread loaf in Bread.Loaves)
+      {
+        total += loaf.Price;
+      } 
+    }
+    if (Pastry.Pastries.Count > 0)
+    {
+      foreach (Pastry pastry in Pastry.Pastries)
+      {
+        total += pastry.Price;
+      } 
+    }
     return total;
   }
 }
