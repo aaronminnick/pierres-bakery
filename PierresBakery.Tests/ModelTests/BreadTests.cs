@@ -44,5 +44,17 @@ namespace PierresBakery.Tests
 
       CollectionAssert.AreEqual(testList, Bread.Loaves);
     }
+
+    [TestMethod]
+    public void ClearAll_ClearsLoaves_List()
+    {
+      Bread breadOne = new Bread("challah");
+      Bread breadTwo = new Bread("challah");
+
+      List<Bread> testList = new List<Bread> {};
+      Bread.ClearAll();
+
+      CollectionAssert.AreEqual(testList, Bread.Loaves);
+    }
   }
 }

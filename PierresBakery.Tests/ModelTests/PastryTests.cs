@@ -44,5 +44,17 @@ namespace PierresBakery.Tests
 
       CollectionAssert.AreEqual(testList, Pastry.Pastries);
     }
+
+    [TestMethod]
+    public void ClearAll_ClearsPastries_List()
+    {
+      Pastry pastryOne = new Pastry("eclair");
+      Pastry pastryTwo = new Pastry("eclair");
+
+      List<Pastry> testList = new List<Pastry> {};
+      Pastry.ClearAll();
+
+      CollectionAssert.AreEqual(testList, Pastry.Pastries);
+    }
   }
 }
