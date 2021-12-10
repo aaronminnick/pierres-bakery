@@ -29,9 +29,9 @@ public class Program
     if (OrderNotEmpty())
     {
       Console.WriteLine(
+        "Total Cost: ${0}\n" +
         "Type O to see a detailed order.\n" +
-        "Type C to check out and start over.\n" +
-        "Total Cost: ${0}", 
+        "Type C to check out and start over.\n",
         TotalOrder());
     }
 
@@ -101,8 +101,8 @@ public class Program
         }
         Bread newBread = new Bread(breadName);
         Console.WriteLine(
-          "====================================================\n" +
-          "\nAdding one {0} to order for ${1}\n", 
+          "====================================================\n\n" +
+          "Adding one {0} to order for ${1}\n", 
           breadName, newBread.Price);
         waitInput = false;
       }
@@ -123,8 +123,8 @@ public class Program
         }
         Pastry newPastry = new Pastry(pastryName);
         Console.WriteLine(
-          "====================================================\n" +
-          "\nAdding one {0} to order for ${1}\n",
+          "====================================================\n\n" +
+          "Adding one {0} to order for ${1}\n",
           pastryName, newPastry.Price);
         waitInput = false;
       }
@@ -136,8 +136,8 @@ public class Program
     if (OrderNotEmpty())
     {
       Console.WriteLine(
-        "====================================================\n" +
-        "\nDetailed Order:\n"
+        "====================================================\n\n" +
+        "Detailed Order:\n"
         );
       if (Bread.Loaves.Count > 0)
       {
@@ -157,21 +157,32 @@ public class Program
     }
     else
     {
-      Console.WriteLine("\nNo items have been ordered yet.\n");
+      Console.WriteLine("====================================================\n\n" +
+      "No items have been ordered yet.\n"
+      );
     }
   }
 
   private static void ClearOrder()
   {
-    Console.WriteLine(
-      "====================================================\n\n" +
-      "Your total is ${0}.\n" +
-      "Thank you! Please come again!\n" +
-      "(Type Control-C at any time to exit program.)\n\n" + 
-      "====================================================\n\n\n\n",
-      TotalOrder());
-    Bread.ClearAll();
-    Pastry.ClearAll();
-    firstWrite = true;
+    if (OrderNotEmpty())
+    {
+      Console.WriteLine(
+        "====================================================\n\n" +
+        "Your total is ${0}.\n" +
+        "Thank you! Please come again!\n" +
+        "(Type Control-C at any time to exit program.)\n\n" + 
+        "====================================================\n\n\n\n",
+        TotalOrder());
+      Bread.ClearAll();
+      Pastry.ClearAll();
+      firstWrite = true;
+    }
+    else
+    {
+      Console.WriteLine("====================================================\n\n" +
+      "No items have been ordered yet.\n"
+      );
+    }
   }
 }
