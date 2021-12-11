@@ -4,7 +4,7 @@ namespace PierresBakery.Models
 {
   public class Bread : BakedItem
   {
-    public static List<Bread> Loaves { get; }= new List<Bread> {};
+    public static List<Bread> Loaves { get; } = new List<Bread> {};
     public override int Price 
     { 
       get
@@ -28,7 +28,7 @@ namespace PierresBakery.Models
     {
       Loaves.Remove(this);
     }
-    
+
     public static void ClearAll()
     {
       Loaves.Clear();

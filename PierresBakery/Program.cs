@@ -1,30 +1,40 @@
 using PierresBakery.Models;
 using System;
+using System.Collections.Generic;
 
 public class Program
 {
-  public static bool firstWrite = true;
+  private static Dictionary<char, string> _menuItems = new Dictionary<char, string> {
+    {'1', "Challah"},
+    {'2', "Rye"},
+    {'3', "Baguette"},
+    {'4', "Olive Loaf"},
+    {'5', "Eclair"},
+    {'6', "Pan a Chocolat"},
+    {'7', "Apple Turnover"}
+  };
+  private static bool _firstWrite = true;
   public static void Main()
   {
-    if (firstWrite == true)
+    if (_firstWrite == true)
     {
       Console.WriteLine(
         "====================================================\n" +
         "     ---*** Welcome to Pierre's Bakery! ***---"
         );
-      firstWrite = false;
+      _firstWrite = false;
     }
 
     Console.WriteLine(
       "====================================================\n\n" +
       "Today's Menu:\n\n" +
       "Bread - $5 each, every 3rd loaf is free.\n" +
-      "1. Challah   2. Rye   3. Baguette   4. Olive Loaf\n\n" +
+      "1. {0}   2. {1}   3. {2}   4. {3}\n\n" +
       "Pastry - $2 each, every 3rd pastry is $1 (3 for $5).\n" +
-      "5. Eclair   6. Pan a Chocolat   7. Apple Turnover\n\n" +
+      "5. {4}   6. {5}   7. {6}\n\n" +
       "====================================================\n\n" +
-      "Please type a number to add the item to your order.\n"
-      );
+      "Please type a number to add the item to your order.\n",
+      _menuItems['1'], _menuItems['2'], _menuItems['3'], _menuItems['4'], _menuItems['5'], _menuItems['6'], _menuItems['7']);
     
     if (OrderNotEmpty())
     {
@@ -89,22 +99,7 @@ public class Program
       }
       else if ('1' <= inputChar && inputChar <= '4')
       {
-        string breadName = "";
-        switch (inputChar)
-        {
-          case '1':
-            breadName = "Challah";
-            break;
-          case '2':
-            breadName = "Rye";
-            break;
-          case '3':
-            breadName = "Baguette";
-            break;
-          case '4':
-            breadName = "Olive Loaf";
-            break;
-        }
+        string breadName = _menuItems[inputChar];
         Bread newBread = new Bread(breadName);
         Console.WriteLine(
           "====================================================\n\n" +
@@ -114,19 +109,7 @@ public class Program
       }
       else if ('5' <= inputChar && inputChar <= '7')
       {
-        string pastryName = "";
-        switch (inputChar)
-        {
-          case '5':
-            pastryName = "Eclair";
-            break;
-          case '6':
-            pastryName = "Pan a Chocolat";
-            break;
-          case '7':
-            pastryName = "Apple Turnover";
-            break;
-        }
+        string pastryName = _menuItems[inputChar];
         Pastry newPastry = new Pastry(pastryName);
         Console.WriteLine(
           "====================================================\n\n" +
@@ -188,22 +171,7 @@ public class Program
       }
       else if ('1' <= inputChar && inputChar <= '4')
       {
-        string breadName = "";
-        switch (inputChar)
-        {
-          case '1':
-            breadName = "Challah";
-            break;
-          case '2':
-            breadName = "Rye";
-            break;
-          case '3':
-            breadName = "Baguette";
-            break;
-          case '4':
-            breadName = "Olive Loaf";
-            break;
-        }
+        string breadName = _menuItems[inputChar];
         Bread foundBread = Bread.Loaves.Find(loaf => loaf.Name == breadName);
         if (foundBread != null)
         {
@@ -224,19 +192,7 @@ public class Program
       }
       else if ('5' <= inputChar && inputChar <= '7')
       {
-        string pastryName = "";
-        switch (inputChar)
-        {
-          case '5':
-            pastryName = "Eclair";
-            break;
-          case '6':
-            pastryName = "Pan a Chocolat";
-            break;
-          case '7':
-            pastryName = "Apple Turnover";
-            break;
-        }
+        string pastryName = _menuItems[inputChar];
         Pastry foundPastry = Pastry.Pastries.Find(pastry => pastry.Name == pastryName);
         if (foundPastry != null)
         {
@@ -271,7 +227,7 @@ public class Program
         TotalOrder());
       Bread.ClearAll();
       Pastry.ClearAll();
-      firstWrite = true;
+      _firstWrite = true;
     }
     else
     {
