@@ -10,7 +10,7 @@ public class Program
     {'3', "Baguette"},
     {'4', "Olive Loaf"},
     {'5', "Eclair"},
-    {'6', "Pan a Chocolat"},
+    {'6', "Pain au Chocolat"},
     {'7', "Apple Turnover"}
   };
   private static bool _firstWrite = true;
