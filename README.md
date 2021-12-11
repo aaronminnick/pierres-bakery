@@ -11,7 +11,7 @@ Bread - $5 each, every 3rd loaf is free.
 1. Challah   2. Rye   3. Baguette   4. Olive Loaf
 
 Pastry - $2 each, every 3rd pastry is $1 (3 for $5).
-5. Eclair   6. Pan a Chocolat   7. Apple Turnover
+5. Eclair   6. Pain au Chocolat   7. Apple Turnover
 ====================================================
 
 Please type a number to add the item to your order.
