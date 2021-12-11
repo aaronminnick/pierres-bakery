@@ -42,6 +42,8 @@ $ git clone https://github.com/aaronminnick/pierres-bakery.git
 $ cd PierresBakery
 $ dotnet run
 ```
+* Once the project is built, you can also launch the console app using the .exe file located in the bin folder.
+
 ### TDD
 If you wish to run the unit tests, use console commands to navigate to the testing project folder and dotnet restore prior to running dotnet test:
 ```
