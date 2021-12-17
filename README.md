@@ -57,7 +57,7 @@ $ dotnet test
 
 _Thanks for reading! Please feel free to contact me with feedback!_
 ***
-#### [License: CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
-![](https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png)
+#### [License: MIT](https://opensource.org/licenses/MIT)
+#### Copyright (c) 2021 Aaron Minnick
 #### Copyright (c) 2021 Aaron Minnick
 
